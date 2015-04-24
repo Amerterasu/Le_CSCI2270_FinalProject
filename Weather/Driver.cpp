@@ -83,5 +83,4 @@ void displayMenu()
     std::cout << "3. Example Function" << std::endl;
     std::cout << "4. Example Function" << std::endl;
     std::cout << "5. Quit" << std::endl;
-    return;
 }
