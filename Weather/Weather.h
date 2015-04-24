@@ -1,5 +1,6 @@
 #ifndef WEATHER_H_INCLUDED
 #define WEATHER_H_INCLUDED
+
 struct dayNode{
     std::string date;
     int high;
