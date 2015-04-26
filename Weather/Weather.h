@@ -34,7 +34,6 @@ public:
     Weather();
     ~Weather();
     void addDay(dayNode* x);
-    int hashSum(std::string x);
     void printTable();
     dayNode* getHead();
     dayNode* getHigh();
@@ -48,6 +47,7 @@ public:
     dayNode* averagePercip(dayNode* head);
 
 private:
+    int hashSum(std::string x);
     dayNode* hashTable;
     int tableSize;
 };
