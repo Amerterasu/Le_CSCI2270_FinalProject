@@ -68,9 +68,11 @@ int main(int argc, char* argv[])
     {
         cout << "Unable to open the file you specified." << endl;
     }
-    w.printTable();
+    //w.printTable();
     int input = 0;
     bool quit = false;
+    string day;
+    dayNode* temp = new dayNode;
 
     while(quit != true)
     {
@@ -85,15 +87,32 @@ int main(int argc, char* argv[])
         {
             // Example Function
             case 1:
+                    cout << "Enter a day (DD/MM/YY):" << endl;
+                    getline(cin, day);
+                    temp = w.findDay(day);
+                    cout << "On this day:" << endl;
+                    if(temp->high == 0)
+                        cout << "No date found, check if your input is correct" << endl;
+                    else
+                        cout<<temp->date<<"- High:"<<temp->high<<" Low:"<<temp->low<<" Percip:"<<temp->percip<<" Snow:"<<temp->snow<<" Snow Depth:"<<temp->snow_depth<<endl;
                 break;
             // Example Function
             case 2:
+                    temp = w.getHighSnow();
+                    cout << "High Snow:" << endl;
+                    cout<<temp->date<<"- High:"<<temp->high<<" Low:"<<temp->low<<" Percip:"<<temp->percip<<" Snow:"<<temp->snow<<" Snow Depth:"<<temp->snow_depth<<endl;
                 break;
             // Example Function
             case 3:
+                    temp = w.getHigh();
+                    cout << "High:" << endl;
+                    cout<<temp->date<<"- High:"<<temp->high<<" Low:"<<temp->low<<" Percip:"<<temp->percip<<" Snow:"<<temp->snow<<" Snow Depth:"<<temp->snow_depth<<endl;
                 break;
             // Example Function
             case 4:
+                    temp = w.getLow();
+                    cout << "Low:" << endl;
+                    cout<<temp->date<<"- High:"<<temp->high<<" Low:"<<temp->low<<" Percip:"<<temp->percip<<" Snow:"<<temp->snow<<" Snow Depth:"<<temp->snow_depth<<endl;
                 break;
             // Quit
             case 5:

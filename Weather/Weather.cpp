@@ -109,3 +109,79 @@ void Weather::printTable(){
         cout<<"end of linked list"<<endl;
     }
 }
+/*
+Method: getHigh
+Purpose: return the day with the all-time highest temp
+Return: dayNode with highest temperature
+*/
+dayNode* Weather::getHigh()
+{
+    dayNode* hi = new dayNode;
+    hi->high = 0;
+    for(int i = 0; i < tableSize; i++){
+        dayNode* temp = &hashTable[i];
+        while(temp != NULL){
+            if(temp->high > hi->high)
+                hi = temp;
+            temp= temp->next;
+        }
+    }
+
+    return hi;
+}
+/*
+Method: getLow
+Purpose: return the day with the all-time lowest temp
+Return: dayNode with lowest temperature
+*/
+dayNode* Weather::getLow()
+{
+    dayNode* low = new dayNode;
+    low->low = 0;
+    for(int i = 0; i < tableSize; i++){
+        dayNode* temp = &hashTable[i];
+        while(temp != NULL){
+            if(temp->low < low->low)
+                low = temp;
+            temp= temp->next;
+        }
+    }
+    return low;
+}
+/*
+Method: getHighSnow
+Purpose: return the day with the all-time highest snow
+Return: dayNode with highest snow
+*/
+dayNode* Weather::getHighSnow()
+{
+    dayNode* sHi = new dayNode;
+    sHi->snow = 0;
+    for(int i = 0; i < tableSize; i++){
+        dayNode* temp = &hashTable[i];
+        while(temp != NULL){
+            if(temp->snow > sHi->snow)
+                sHi = temp;
+            temp= temp->next;
+        }
+    }
+    return sHi;
+}
+/*
+Method: findDay
+Purpose: return the day to which the user wants, expected formate DD/MM/YY. Ex: 8/5/13, 13/12/13;
+Return: dayNode
+*/
+dayNode* Weather::findDay(std::string time)
+{
+    dayNode* day = new dayNode;
+    for(int i = 0; i < tableSize; i++){
+        dayNode* temp = &hashTable[i];
+        while(temp != NULL){
+            if(time == temp->date)
+                day = temp;
+            temp= temp->next;
+        }
+    }
+    return day;
+}

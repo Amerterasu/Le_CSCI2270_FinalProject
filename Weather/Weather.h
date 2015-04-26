@@ -35,12 +35,11 @@ public:
     ~Weather();
     void addDay(dayNode* x);
     void printTable();
-    dayNode* getHead();
     dayNode* getHigh();
-    dayNode* getTimeInterval(std::string start, std::string end); //returns head of a new separate linked list
+    //dayNode* getTimeInterval(std::string start, std::string end); //returns head of a new separate linked list
     dayNode* getLow();
     dayNode* findDay(std::string time);
-    dayNode* getHighInterval(dayNode* head, std::string criteria);
+    //dayNode* getHighInterval(dayNode* head, std::string criteria);
     dayNode* getHighSnow();
     dayNode* getHighPercip();
     dayNode* averageTemp(dayNode* head);
