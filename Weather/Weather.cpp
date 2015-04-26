@@ -25,11 +25,8 @@ Method: hashSum
 Purpose: produces hashcode form the date of the node
 Return: hashcode
 */
-// store fractional part of kA
-// where k is the string and A is a constant 0 < A < 1
-// A = 13/32
-//multiply fractional of kA by m, a constant
-// m will be a power of 2
+/*
+*/
 int Weather::hashSum(std::string k){
     int index;
     int slash = k.find('/');
@@ -56,7 +53,7 @@ void Weather::addDay(dayNode* newNode){
 
         if(hashTable[index].date >= newNode->date){
            //temporarily storing first node at that index
-            dayNode* temp = new dayNode(hashTable[index].date, hashTable[index].high, hashTable[index].low, hashTable[index].percip, hashTable[index].snow, hashTable[index].snow_depth, hashTable[index].next);
+            dayNode* temp = new dayNode(hashTable[index].date, hashTable[index].high, hashTable[index].low, hashTable[index].precip, hashTable[index].snow, hashTable[index].snow_depth, hashTable[index].next);
             temp->next = NULL;
             newNode->next = temp;
             hashTable[index] = *newNode;
@@ -71,7 +68,7 @@ void Weather::addDay(dayNode* newNode){
         dayNode* temp = &hashTable[index];
         //if the node at the head of list is greater than the newNode then replace the head
         if(hashTable[index].date > newNode->date){
-            dayNode* secondTemp = new dayNode(hashTable[index].date, hashTable[index].high, hashTable[index].low, hashTable[index].percip, hashTable[index].snow, hashTable[index].snow_depth, hashTable[index].next);
+            dayNode* secondTemp = new dayNode(hashTable[index].date, hashTable[index].high, hashTable[index].low, hashTable[index].precip, hashTable[index].snow, hashTable[index].snow_depth, hashTable[index].next);
             secondTemp->next = hashTable[index].next;
             newNode->next = secondTemp;
             hashTable[index] = *newNode;
@@ -103,7 +100,7 @@ void Weather::printTable(){
     for(int i = 0; i < tableSize; i++){
         dayNode* temp = &hashTable[i];
         while(temp != NULL){
-            cout<<temp->date<<"- High:"<<temp->high<<" Low:"<<temp->low<<" Percip:"<<temp->percip<<" Snow:"<<temp->snow<<" Snow Depth:"<<temp->snow_depth<<endl;
+            cout<<temp->date<<"- High:"<<temp->high<<" Low:"<<temp->low<<" Precip:"<<temp->precip<<" Snow:"<<temp->snow<<" Snow Depth:"<<temp->snow_depth<<endl;
             temp= temp->next;
         }
         cout<<"end of linked list"<<endl;
@@ -169,7 +166,7 @@ dayNode* Weather::getHighSnow()
 }
 /*
 Method: findDay
-Purpose: return the day to which the user wants, expected formate DD/MM/YY. Ex: 8/5/13, 13/12/13;
+Purpose: return the day to which the user wants, expected formate DD/MM/YY. Ex: 8/5/13, 12/13/13;
 Return: dayNode
 */
 dayNode* Weather::findDay(std::string time)
@@ -184,4 +181,61 @@ dayNode* Weather::findDay(std::string time)
         }
     }
     return day;
+}
+/*
+Method: getHighPercip
+Purpose: finds highest percipitation in the table
+Return: dayNode
+*/
+dayNode* Weather::getHighPercip(){
+    dayNode* largest;
+    for(int i = 0; i < tableSize; i++){
+        dayNode* temp = &hashTable[i];
+        while(temp != NULL){
+            if(temp->precip > largest->precip)
+                largest = temp;
+            temp= temp->next;
+        }
+    }
+    return largest;
+}
+/*
+Method: averageHighTemp()
+Purpose: finds the average high through the table
+Return: double
+*/
+double Weather::averageHighTemp(){
+    int total = 0;
+    int total_data = 0;
+    double answer = 0.0;
+    for(int i = 0; i < tableSize; i++){
+        dayNode* temp = &hashTable[i];
+        while(temp != NULL){
+            total += temp->high;
+            total_data++;
+            temp= temp->next;
+        }
+    }
+    answer = total/ total_data;
+    return answer;
+}
+/*
+Method: averagePrecip()
+Purpose: Finds the average precipitation through the table
+Return: double
+*/
+double Weather::averagePrecip(){
+    double total = 0;
+    int total_data = 0;
+    double answer = 0.0;
+    for(int i = 0; i < tableSize; i++){
+        dayNode* temp = &hashTable[i];
+        while(temp != NULL){
+            total += temp->precip;
+            total_data++;
+            temp= temp->next;
+        }
+    }
+    answer = total/ total_data;
+    return answer;
 }

@@ -6,7 +6,7 @@ struct dayNode{
     std::string date;
     int high;
     int low;
-    double percip;
+    double precip;
     double snow;
     double snow_depth;
     dayNode* next;
@@ -15,16 +15,16 @@ struct dayNode{
         date = "";
         high = 0;
         low = 0;
-        percip = 0;
+        precip = 0;
         snow = 0;
         snow_depth = 0;
         next = NULL;
     };
     //overloaded instructor for copying purposes
-    dayNode(std::string in_date, int in_high, int in_low, int in_percip, int in_snow, int in_snow_depth, dayNode* in_next){
+    dayNode(std::string in_date, int in_high, int in_low, int in_precip, int in_snow, int in_snow_depth, dayNode* in_next){
         date = in_date;
         low = in_low;
-        percip = in_percip;
+        precip = in_precip;
         snow = in_snow;
         snow_depth = in_snow_depth;
     }
@@ -42,8 +42,8 @@ public:
     //dayNode* getHighInterval(dayNode* head, std::string criteria);
     dayNode* getHighSnow();
     dayNode* getHighPercip();
-    dayNode* averageTemp(dayNode* head);
-    dayNode* averagePercip(dayNode* head);
+    double averageHighTemp();
+    double averagePrecip();
 
 private:
     int hashSum(std::string x);
