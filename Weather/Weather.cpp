@@ -171,7 +171,7 @@ Return: dayNode
 */
 dayNode* Weather::findDay(std::string time)
 {
-    dayNode* day = new dayNode;
+    dayNode* day;
     for(int i = 0; i < tableSize; i++){
         dayNode* temp = &hashTable[i];
         while(temp != NULL){
@@ -183,12 +183,12 @@ dayNode* Weather::findDay(std::string time)
     return day;
 }
 /*
-Method: getHighPercip
-Purpose: finds highest percipitation in the table
+Method: getHighPrecip
+Purpose: finds highest precipitation in the table
 Return: dayNode
 */
 dayNode* Weather::getHighPercip(){
-    dayNode* largest;
+    dayNode* largest = new dayNode;
     for(int i = 0; i < tableSize; i++){
         dayNode* temp = &hashTable[i];
         while(temp != NULL){

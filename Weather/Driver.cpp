@@ -68,7 +68,6 @@ int main(int argc, char* argv[])
     {
         cout << "Unable to open the file you specified." << endl;
     }
-    //w.printTable();
     int input = 0;
     bool quit = false;
     string day;
