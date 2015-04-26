@@ -34,6 +34,7 @@
 		</Compiler>
 		<Unit filename="BoulderWeatherData.txt" />
 		<Unit filename="Driver.cpp" />
+		<Unit filename="Weather.cpp" />
 		<Unit filename="Weather.h" />
 		<Extensions>
 			<code_completion />

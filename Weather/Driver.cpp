@@ -1,7 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include "Weather.h"
-
+#include <stdlib.h>
+#include <sstream>
 using namespace std;
 
 void displayMenu();
@@ -14,25 +15,60 @@ int main(int argc, char* argv[])
     // either way I've created both methods just in case
     //infile.open(argv[1]);
     infile.open("BoulderWeatherData.txt");
-
-    string line;
-
+    Weather w;
+    string line, first;
+    int counter = 0;
+    dayNode* newNode;
     if(infile.is_open())
     {
+        //gets first line which is just the header of the table
+        getline(infile, first);
         while (getline(infile, line))
         {
-            // exclude the first line and all empty lines
-            if (line.substr(0,4) != "Date" && line.empty() == false)
-            {
-                // parse line
-            }
+            newNode = new dayNode;
+            //removes all commas and fills in the data for each dayNode accordingly
+            stringstream ss(line);
+           while(getline(ss, line, ',')){
+
+                switch(counter){
+                case 0:
+                    newNode->date = line;
+                    counter++;
+                    break;
+                case 1:
+                    //skip days, only need the date
+                    counter++;
+                    break;
+                case 2:
+                    newNode->high = atoi(line.c_str());
+                    counter++;
+                    break;
+                case 3:
+                    newNode->low = atoi(line.c_str());
+                    counter++;
+                    break;
+                case 4:
+                    newNode->percip = atof(line.c_str());
+                    counter++;
+                    break;
+                case 5:
+                    newNode->snow = atof(line.c_str());
+                    counter++;
+                    break;
+                case 6:
+                    newNode->snow_depth = atof(line.c_str());
+                    counter = 0;
+                    break;
+                }
+           }
+           w.addDay(newNode);
         }
     }
     else
     {
         cout << "Unable to open the file you specified." << endl;
     }
-
+    w.printTable();
     int input = 0;
     bool quit = false;
 
