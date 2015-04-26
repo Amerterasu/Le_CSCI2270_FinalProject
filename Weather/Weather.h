@@ -44,6 +44,7 @@ public:
     dayNode* getHighPercip();
     double averageHighTemp();
     double averagePrecip();
+    void sortIndexbyHigh();
 
 private:
     int hashSum(std::string x);

@@ -41,8 +41,12 @@ Returns: nothing
 */
 void Weather::addDay(dayNode* newNode){
     newNode->next = NULL;
+
+    int newNodeFirst = newNode->date.find('/') + 1;
+    int newNodeSecond = newNode->date.find_last_of('/') - 1;
+    int newNodeDay = atoi(newNode->date.substr(newNodeFirst, newNode->date.size() - newNodeSecond).c_str());
+    cout<<newNodeDay<<endl;
     int index = hashSum(newNode->date);
-    cout<<newNode->date<<":"<<index<<endl;
     //if the index has never used
     if(hashTable[index].next == NULL && hashTable[index].high == -1){
         hashTable[index] = *newNode;
@@ -50,8 +54,11 @@ void Weather::addDay(dayNode* newNode){
     }
     //if the index has been used but there is no linked list
     else if(hashTable[index].next == NULL && hashTable[index].high != -1){
+        int firstSlash = hashTable[index].date.find('/');
+        int secondSlash = hashTable[index].date.find_last_of('/');
+        int day = atoi(hashTable[index].date.substr(firstSlash, secondSlash).c_str());
 
-        if(hashTable[index].date >= newNode->date){
+        if(day >= newNodeDay){
            //temporarily storing first node at that index
             dayNode* temp = new dayNode(hashTable[index].date, hashTable[index].high, hashTable[index].low, hashTable[index].precip, hashTable[index].snow, hashTable[index].snow_depth, hashTable[index].next);
             temp->next = NULL;
@@ -67,7 +74,10 @@ void Weather::addDay(dayNode* newNode){
     else{
         dayNode* temp = &hashTable[index];
         //if the node at the head of list is greater than the newNode then replace the head
-        if(hashTable[index].date > newNode->date){
+        int firstSlash = hashTable[index].date.find('/');
+        int secondSlash = hashTable[index].date.find_last_of('/');
+        int day = atoi(hashTable[index].date.substr(firstSlash, secondSlash).c_str());
+        if(day > newNodeDay){
             dayNode* secondTemp = new dayNode(hashTable[index].date, hashTable[index].high, hashTable[index].low, hashTable[index].precip, hashTable[index].snow, hashTable[index].snow_depth, hashTable[index].next);
             secondTemp->next = hashTable[index].next;
             newNode->next = secondTemp;
@@ -75,13 +85,17 @@ void Weather::addDay(dayNode* newNode){
         }
         //however if it is not then search through the whole list for its place
         else{
+            int tempfirstSlash, tempsecondSlash, tempday;
             while(temp != NULL){
+                 tempfirstSlash = temp->date.find('/');
+                 tempsecondSlash = temp->date.find_last_of('/');
+                 tempday = atoi(temp->date.substr(firstSlash, secondSlash).c_str());
+
                 if(temp->next != NULL && temp->next->date < newNode->date)
                     temp = temp->next;
                 else
                     break;
             }
-
             if(temp->next == NULL)
                 temp->next = newNode;
             else{
@@ -238,4 +252,7 @@ double Weather::averagePrecip(){
     }
     answer = total/ total_data;
     return answer;
+}
+void Weather::sortIndexbyHigh(){
+
 }
