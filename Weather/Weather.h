@@ -2,6 +2,11 @@
 #define WEATHER_H_INCLUDED
 
 #include <iostream>
+struct month{
+    std::string name;
+    int number;
+};
+
 struct dayNode{
     std::string date;
     int high;
@@ -10,6 +15,7 @@ struct dayNode{
     double snow;
     double snow_depth;
     dayNode* next;
+    dayNode* prev;
     //empty constructor
     dayNode(){
         date = "";
@@ -44,11 +50,12 @@ public:
     dayNode* getHighPercip();
     double averageHighTemp();
     double averagePrecip();
-    void sortIndexbyHigh();
+    void getDataForMonth(std::string month, std::string year);
 
 private:
     int hashSum(std::string x);
     dayNode* hashTable;
+    month * months;
     int tableSize;
 };
 

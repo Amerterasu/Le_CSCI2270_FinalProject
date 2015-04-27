@@ -72,6 +72,9 @@ int main(int argc, char* argv[])
     bool quit = false;
     string day;
     string usr_input;
+    string month;
+    string y;
+    string year;
     dayNode* temp = new dayNode;
     dayNode* input_node = new dayNode;
     double average = 0.0;
@@ -116,45 +119,58 @@ int main(int argc, char* argv[])
                     cout << "Low Temp:" << temp->low<< endl;
                 break;
             case 5:
-                temp = w.getHighPercip();
-                cout<<"Date:"<<temp->date<<endl;
-                cout<<"Highest Precipitation:"<<temp->precip<<endl;
+                    temp = w.getHighPercip();
+                    cout<<"Date:"<<temp->date<<endl;
+                    cout<<"Highest Precipitation:"<<temp->precip<<endl;
                 break;
             case 6:
-                average = w.averageHighTemp();
-                cout<<"Average of High Temp:"<<average<<endl;
+                    average = w.averageHighTemp();
+                    cout<<"Average of High Temp:"<<average<<endl;
                 break;
             case 7:
-                average = w.averagePrecip();
-                cout<<"Average of Precipitation:"<<average<<endl;
+                    average = w.averagePrecip();
+                    cout<<"Average of Precipitation:"<<average<<endl;
                 break;
             case 8:
-                cout<<"Date:";
-                getline(cin, usr_input);
-                input_node->date = usr_input;
-                cout<<"High:";
-                getline(cin, usr_input);
-                input_node->high = atoi(usr_input.c_str());
-                cout<<"Low:";
-                getline(cin, usr_input);
-                input_node->high = atoi(usr_input.c_str());
-                cout<<"Precipitation:";
-                getline(cin, usr_input);
-                input_node->high = atof(usr_input.c_str());
-                cout<<"Snow:";
-                getline(cin, usr_input);
-                input_node->high = atof(usr_input.c_str());
-                cout<<"Snow Depth:";
-                getline(cin, usr_input);
-                input_node->high = atof(usr_input.c_str());
+                    cout<<"Date:";
+                    getline(cin, usr_input);
+                    input_node->date = usr_input;
+                    cout<<"High:";
+                    getline(cin, usr_input);
+                    input_node->high = atoi(usr_input.c_str());
+                    cout<<"Low:";
+                    getline(cin, usr_input);
+                    input_node->high = atoi(usr_input.c_str());
+                    cout<<"Precipitation:";
+                    getline(cin, usr_input);
+                    input_node->high = atof(usr_input.c_str());
+                    cout<<"Snow:";
+                    getline(cin, usr_input);
+                    input_node->high = atof(usr_input.c_str());
+                    cout<<"Snow Depth:";
+                    getline(cin, usr_input);
+                    input_node->high = atof(usr_input.c_str());
+                break;
+            case 9:
+                    cout << "Enter a month:" << endl;
+                    getline(cin, month);
+                    cout << "Do you want this data from a specific year? Y/N" << endl;
+                    getline(cin, y);
+                    if(y == "Y"){
+                        cout << "Which year?" << endl;
+                        getline(cin, year);
+                        w.getDataForMonth(month, year);
+                    }
+                    else
+                        w.getDataForMonth(month, "-1");
                 break;
             case 10:
-                w.printTable();
+                    w.printTable();
                 break;
             // Quit
             case 11:
-                std::cout << "Goodbye!" << std::endl;
-                quit = true;
+                    std::cout << "Goodbye!" << std::endl;
+                    quit = true;
                 break;
             // invalid input
             default:
@@ -178,7 +194,7 @@ void displayMenu()
     std::cout << "6. Average High Temperature" << std::endl;
     std::cout << "7. Average Precipitation" << std::endl;
     std::cout << "8. Add Data Point" << std::endl;
-    std::cout << "9. Sort Month by High Temperature" << std::endl;
+    std::cout << "9. Find Data For A Specific Month" << std::endl;
     std::cout << "10. Print Data" << std::endl;
     std::cout << "11. Quit" << std::endl;
 }
