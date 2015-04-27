@@ -4,12 +4,15 @@ Project Description
 
 How to Run
   - Run project in command line or in Codeblock 
+
 Dependencies 
   -uses standard libraries 
   -Weather header file
   -stream libraries( fstream, sstream)
+
 System Requirements
   -none
+
 Group Members
   - Fox Maikovich- Username: CommonFox
 
