@@ -1,0 +1,7 @@
+# file extensions to ignore
+*.DS_Store
+*.swp
+*.o
+
+# specific file in directory to ignore
+/weather
