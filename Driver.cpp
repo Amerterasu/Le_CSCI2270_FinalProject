@@ -144,16 +144,17 @@ int main(int argc, char* argv[])
                     input_node->high = atoi(usr_input.c_str());
                     cout<<"Low:";
                     getline(cin, usr_input);
-                    input_node->high = atoi(usr_input.c_str());
+                    input_node->low = atoi(usr_input.c_str());
                     cout<<"Precipitation:";
                     getline(cin, usr_input);
-                    input_node->high = atof(usr_input.c_str());
+                    input_node->precip = atof(usr_input.c_str());
                     cout<<"Snow:";
                     getline(cin, usr_input);
-                    input_node->high = atof(usr_input.c_str());
+                    input_node->snow = atof(usr_input.c_str());
                     cout<<"Snow Depth:";
                     getline(cin, usr_input);
-                    input_node->high = atof(usr_input.c_str());
+                    input_node->snow_depth = atof(usr_input.c_str());
+                    w.addDay(input_node);
                 break;
             case 9:
                     cout << "Enter a month:" << endl;
