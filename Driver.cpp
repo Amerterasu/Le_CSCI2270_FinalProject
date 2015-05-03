@@ -91,7 +91,7 @@ int main(int argc, char* argv[])
         {
             // Example Function
             case 1:
-                    cout << "Enter a day (MM/DD/YY):" << endl;
+                    cout << "Enter a day (MM/DD/YY). If the date only has a units digit (M/D/YY):" << endl;
                     getline(cin, day);
                     temp = w.findDay(day);
                     cout << "On this day:" << endl;
@@ -185,6 +185,7 @@ int main(int argc, char* argv[])
 
 void displayMenu()
 {
+    std::cout << "This program runs on data from 1/1/10 through 8/31/13" << std::endl;
     std::cout << "====== Main Menu ======" << std::endl;
     std::cout << "1. Find Date" << std::endl;
     std::cout << "2. Highest Snow" << std::endl;
