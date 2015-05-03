@@ -169,7 +169,7 @@ void Weather::printTable(){
             cout<<temp->date<<"- High:"<<temp->high<<" Low:"<<temp->low<<" Precip:"<<temp->precip<<" Snow:"<<temp->snow<<" Snow Depth:"<<temp->snow_depth<<endl;
             temp= temp->next;
         }
-        cout<<"end of linked list"<<endl;
+        //cout<<"end of linked list"<<endl;
     }
 }
 /*
