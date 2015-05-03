@@ -134,6 +134,10 @@ int main(int argc, char* argv[])
             case 8:
                     cout<<"Date:";
                     getline(cin, usr_input);
+                    if ((usr_input.find_first_of('/') != 2) || (usr_input.find_last_of('/') != 5) ){
+                        cout << "Incorrect Format" << endl;
+                        break;
+                    }
                     input_node->date = usr_input;
                     cout<<"High:";
                     getline(cin, usr_input);
@@ -169,10 +173,12 @@ int main(int argc, char* argv[])
                 break;
             // Quit
             case 11:
+                    average = w.totalSnow();
+                    cout<<"Total Snow: "<<average<<endl;
+            case 12:
                     std::cout << "Goodbye!" << std::endl;
                     quit = true;
                 break;
-            // invalid input
             default:
                 std::cout << "Invalid Input" << std::endl;
                 std::cin.clear();
@@ -197,5 +203,6 @@ void displayMenu()
     std::cout << "8. Add Data Point" << std::endl;
     std::cout << "9. Find Data For A Specific Month" << std::endl;
     std::cout << "10. Print Data" << std::endl;
-    std::cout << "11. Quit" << std::endl;
+    std::cout << "11. Total Snow" << std::endl;
+    std::cout << "12. Quit" << std::endl;
 }

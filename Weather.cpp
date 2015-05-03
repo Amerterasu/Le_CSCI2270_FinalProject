@@ -230,6 +230,22 @@ dayNode* Weather::getHighSnow()
     }
     return sHi;
 }
+
+double Weather::totalSnow(){
+    int total = 0;
+    double answer = 0.0;
+    for(int i = 0; i < tableSize; i++){
+        dayNode* temp = &hashTable[i];
+        while(temp != NULL){
+            total += temp->snow;
+            temp= temp->next;
+        }
+    }
+    answer = total;
+    return answer;
+
+}
+
 /*
 Method: findDay
 Purpose: return the day to which the user wants, expected formate DD/MM/YY. Ex: 8/5/13, 12/13/13;
