@@ -50,6 +50,7 @@ public:
     dayNode* getHighPercip();
     double averageHighTemp();
     double averagePrecip();
+    double totalSnow();
     void getDataForMonth(std::string month, std::string year);
 
 private:
